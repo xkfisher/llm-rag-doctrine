@@ -18,7 +18,7 @@ RUN pip install --upgrade pip
 # amount of space in the image, which reduces start up time.
 RUN pip --no-cache-dir install  langchain==0.0.149 opensearch-py==2.2.0 sagemaker==2.148.0 beautifulsoup4==4.12.2
 
-RUN pip install unstructured==0.9.3 pdf2image==1.16.3 pdfminer==20191125
+RUN pip install unstructured==0.9.3 pdf2image==1.16.3 pdfminer==20191125 pypdf==3.15.1
 
 # Include python script for retrieving credentials 
 # from AWS SecretsManager and Sagemaker helper classes

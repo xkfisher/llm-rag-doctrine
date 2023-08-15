@@ -21,8 +21,7 @@ from typing import List, Tuple
 from sagemaker.session import Session
 from credentials import get_credentials
 from opensearchpy.client import OpenSearch
-from langchain.document_loaders import UnstructuredPDFLoader
-from langchain.document_loaders import PDFMinerPDFasHTMLLoader
+from langchain.document_loaders import UnstructuredPDFLoader, PyPDFLoader, PDFMinerPDFasHTMLLoader
 from langchain.vectorstores import OpenSearchVectorSearch
 from langchain.embeddings import SagemakerEndpointEmbeddings
 from sm_helper import create_sagemaker_embeddings_from_js_model
@@ -90,7 +89,8 @@ if __name__ == "__main__":
     
     st = time.time() 
     for fn in os.listdir(args.input_data_dir):
-        loader = UnstructuredPDFLoader(fn, mode="elements")
+#         loader = UnstructuredPDFLoader(fn, mode="elements")
+        loader = PyPDFLoader(fn)
         text_splitter = RecursiveCharacterTextSplitter(
             # Set a really small chunk size, just to show.
             chunk_size=args.chunk_size_for_doc_split,
